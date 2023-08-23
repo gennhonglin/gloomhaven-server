@@ -13,7 +13,7 @@ exports.newParty = async (req, res) => {
         const newParty =  {
             party_id: uuidv4(),
             email: req.body.email,
-            party_name: req.body.name,
+            party_name: req.body.party_name,
             password: hashedPass,
             prosperity: 1,
             reputation: 1
@@ -28,3 +28,8 @@ exports.newParty = async (req, res) => {
         res.status(400).send(`Error creating new party ${err}`);
     }
 }
+
+exports.loginParty = async (req, res) => {
+
+}
+

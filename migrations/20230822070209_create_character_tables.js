@@ -3,7 +3,7 @@
  * @returns { Promise<void> }
  */
 exports.up = function(knex) {
-    return knex.schema.creatTable('character', (table) => {
+    return knex.schema.createTable('character', (table) => {
         table.uuid('party_id').notNullable()
         .references('party_id')
         .inTable('party')
