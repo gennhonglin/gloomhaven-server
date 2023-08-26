@@ -8,7 +8,7 @@ exports.up = function(knex) {
     table.string('email').notNullable().unique();
     table.string('party_name').notNullable();
     table.string('password').notNullable();
-    table.integer('prosperity');
+    table.integer('prosperity_points');
     table.integer('reputation');
   })
 };

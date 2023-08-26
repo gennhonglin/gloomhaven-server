@@ -10,7 +10,7 @@ exports.seed = async function(knex) {
       email: 'test@gmail.com',
       party_name: 'Tavern Revengers',
       password: 'password',
-      prosperity: 1,
+      prosperity_points: 1,
       reputation: 1
     },
   ]);
