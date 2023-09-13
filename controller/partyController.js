@@ -29,6 +29,22 @@ exports.newParty = async (req, res) => {
     }
 }
 
+exports.getParty = async (req, res) => {
+    try {
+        const data = await knex('party').where({ party_id: req.params.id });
+
+        if(!data.length) {
+            return res.status(404).send(`Party with id: ${req.params.id} is not a valid party`);
+        } else {
+            res.status(200).json(data[0]);
+        }
+
+
+    } catch (err) {
+        res.status(400).send(`Error retrieving Party: ${err}`);
+    } 
+}
+
 exports.loginParty = async (req, res) => {
 
     if(req.body.checkEmail) {
@@ -84,14 +100,40 @@ exports.displayProsperity = async (req, res) => {
         const data = await knex('party').where({ party_id: req.params.id });
 
         if(!data.length) {
-            return res.status(404).send(`Player with id: ${req.params.id} is not a valid player`);
+            return res.status(404).send(`Party with id: ${req.params.id} is not a valid party`);
         } else {
             res.status(200).json(data[0].prosperity_points);
         }
 
 
     } catch (err) {
-        res.status(400).send(`Error retrieving Player: ${err}`);
+        res.status(400).send(`Error retrieving Party: ${err}`);
     }
+}
+
+exports.updateReputation = async (req, res) => {
+    try {
+        await knex('party').where({party_id: req.body.party_id}).update({reputation: req.body.reputation});
+        res.status(204).send(`party with id: ${req.body.party_id} reputation has been updated`);
+        
+    } catch (err) {
+        res.status(400).send(`Error updating party reputation ${err}`);
+    }
+}
+
+exports.displayReputation = async (req, res) => {
+    try {
+        const data = await knex('party').where({ party_id: req.params.id});
+
+        if(!data.length) {
+            return res.status(404).send(`Party with id: ${req.params.id} is not a valid party`);
+        } else {
+            res.status(200).json(data[0].reputation);
+        }
+
+    } catch (err) {
+        res.status(400).send(`Error retrieving Party: ${err}`);
+    }
+
 }
 
