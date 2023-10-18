@@ -8,7 +8,8 @@ router
 
 router
     .route('/character/:id')
-        .get(characterController.getCharacters);
+        .get(characterController.getCharacters)
+        .post(characterController.updateCharacters);
 
 
 

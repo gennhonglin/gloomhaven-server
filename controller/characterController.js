@@ -40,3 +40,18 @@ exports.getCharacters = async (req, res) => {
         res.status(400).send(`Error retrieving characters: ${err}`);
     }
 }
+
+exports.updateCharacters = async (req, res) => {
+    try {
+        const data = req.body.map(async (data) => {
+            return await knex('character').where({party_id:data.party_id, class: data.class, character_name: data.character_name}).update(data);
+        })
+
+        res.status(204).send(`character updated`);
+
+
+    } catch (err) {
+        res.status(400).send(`Error updating characters: ${err}`);
+    }
+
+}
