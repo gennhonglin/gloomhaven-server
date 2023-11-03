@@ -5,13 +5,8 @@
 exports.up = function(knex) {
     return knex.schema.createTable('character', (table) => {
         table.uuid('party_id').notNullable()
-        .references('party_id')
-        .inTable('party')
-        .onUpdate('CASCADE')
-        .onDelete('CASCADE');
         table.string('class');
         table.string('character_name');
-        table.integer('level');
         table.integer('exp');
         table.integer('gold');
         table.integer('perks');
